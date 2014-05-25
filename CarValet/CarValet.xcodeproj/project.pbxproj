@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A4121E51930123800E12167 /* RR_CarEditControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RR_CarEditControllerProtocol.h; sourceTree = "<group>"; };
 		8A4AC20C192023E5008E1D17 /* RR_CarEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RR_CarEditViewController.h; sourceTree = "<group>"; };
 		8A4AC20D192023E5008E1D17 /* RR_CarEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RR_CarEditViewController.m; sourceTree = "<group>"; };
 		8A5244B51909A1FB00317CE4 /* RR_HybridCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RR_HybridCar.h; sourceTree = "<group>"; };
@@ -130,6 +131,7 @@
 				8A6DE60018F9E9870073C999 /* RR_AppDelegate.h */,
 				8A6DE60118F9E9870073C999 /* RR_AppDelegate.m */,
 				8A6DE60318F9E9870073C999 /* Main_iPhone.storyboard */,
+				8A4121E51930123800E12167 /* RR_CarEditControllerProtocol.h */,
 				8A6DE60618F9E9870073C999 /* Main_iPad.storyboard */,
 				8A6DE60918F9E9870073C999 /* RR_ViewController.h */,
 				8A6DE60A18F9E9870073C999 /* RR_ViewController.m */,
@@ -215,7 +217,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = RR_;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Ronan Sean Reilly";
 				TargetAttributes = {
 					8A6DE61118F9E9870073C999 = {
@@ -336,7 +338,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -376,7 +377,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -435,7 +435,6 @@
 		8A6DE62718F9E9870073C999 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CarValet.app/CarValet";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -458,7 +457,6 @@
 		8A6DE62818F9E9870073C999 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CarValet.app/CarValet";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

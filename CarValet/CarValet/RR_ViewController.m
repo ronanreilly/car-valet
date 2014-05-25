@@ -8,14 +8,24 @@
 
 #import "RR_ViewController.h"
 #import "RR_Car.h"
+#import "RR_CarEditViewController.h"
 
-@interface RR_ViewController ()
 
-@end
-
-@implementation RR_ViewController{
+@implementation RR_ViewController
+{
     NSMutableArray *arrayOfCars;
     NSInteger displayedCarIndex;
+}
+
+#pragma mark - View Lifecycle
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"EditSegue"]) {
+        RR_CarEditViewController *nextController;
+        nextController = segue.destinationViewController;
+        nextController.delegate = self;
+    }
 }
 
 - (void)viewDidLoad
@@ -40,22 +50,28 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    RR_Car *myCar = [[RR_Car alloc] init];
+    [myCar printCarInfo];
+    
+    myCar.make = @"Ford";
+    myCar.model = @"Escape";
+    myCar.year = 2014;
+    myCar.fuelAmount = 10.0f;
+    
+    [myCar printCarInfo];
+    
+    RR_Car *otherCar = [[RR_Car alloc] initWithMake:@"Honda"
+                                        model:@"Accord"
+                                         year:2010
+                                   fuelAmount:12.5f];
+    [otherCar printCarInfo];
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)updateLabel:(UILabel*)theLabel
-    withBaseString:(NSString*)baseString
-             count:(NSInteger)theCount{
-
-    NSString *newText;
-    newText = [NSString stringWithFormat:@"%@ %d", baseString, theCount];
-    
-    theLabel.text = newText;
 }
 
 -(void)displayCurrentCarInfo{
@@ -86,6 +102,28 @@
     
 }
 
+-(void)updateLabel:(UILabel*)theLabel
+    withBaseString:(NSString*)baseString
+             count:(NSInteger)theCount{
+    
+    NSString *newText;
+    newText = [NSString stringWithFormat:@"%@ %ld", baseString, (long)theCount];
+    
+    theLabel.text = newText;
+}
+
+-(RR_Car*)carToEdit{
+    return arrayOfCars[displayedCarIndex];
+}
+
+-(NSInteger)carNumber{
+    return displayedCarIndex;
+}
+
+-(void)editedCarUpdated{
+    [self displayCurrentCarInfo];
+}
+
 // Create a new car when user hits button
 - (IBAction)newCar:(id)sender
 {
@@ -94,8 +132,8 @@
     // add to car container
     [arrayOfCars addObject:newCar];
     
-    [self updateLabel:self.CarNumberLabel
-       withBaseString:@"Car Number: "
+    [self updateLabel:self.totalCarsLabel
+       withBaseString:@"Total Cars"
                 count:[arrayOfCars count]];
 }
 
@@ -106,5 +144,13 @@
 - (IBAction)nextCar:(id)sender {
     [self changeDisplayedCar:displayedCarIndex +1];
 }
+
+// Unwind segue action
+- (IBAction)editingDone:(UIStoryboardSegue*)segue {
+    [self displayCurrentCarInfo];
+    NSLog(@"\neditedCarUpdated in called!\n");
+}
+
+
 
 @end

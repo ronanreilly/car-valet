@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "RR_CarEditControllerProtocol.h"
+
 @class RR_Car;
 
 @interface RR_CarEditViewController : UIViewController
 
-@property (nonatomic) NSInteger carNumber;
+@property (weak, nonatomic) id <RR_CarEditControllerProtocol> delegate;
 @property (strong, nonatomic) RR_Car *currentCar;
 
 

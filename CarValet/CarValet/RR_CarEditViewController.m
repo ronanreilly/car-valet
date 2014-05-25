@@ -15,13 +15,15 @@
 
 @implementation RR_CarEditViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+// This method is used to prepare information for the segue that brings us to the view where we can edit a car
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    // check if edit segue & set up edit screen
+    if ([segue.identifier isEqualToString:@"EditDoneSegue"]) {
+        self.currentCar.make = self.makeField.text;
+        self.currentCar.model = self.modelField.text;
+        self.currentCar.year = [self.yearField.text integerValue];
+        self.currentCar.fuelAmount = [self.fuelField.text floatValue];
     }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -30,10 +32,11 @@
 	// Do any additional setup after loading the view.
     
     NSString *carNumberText;
-    carNumberText = [NSString stringWithFormat:@"Car Number: %d", self.carNumber];
-    
+    carNumberText = [NSString stringWithFormat:@"Car Number: %d",
+                     [self.delegate carNumber]];
     self.carNumberLabel.text = carNumberText;
     
+    self.currentCar = [self.delegate carToEdit];
     self.makeField.text = self.currentCar.make;
     self.modelField.text = self.currentCar.model;
     self.yearField.text = [NSString stringWithFormat:@"%d", self.currentCar.year];
@@ -48,6 +51,8 @@
     self.currentCar.model = self.modelField.text;
     self.currentCar.year = [self.yearField.text integerValue];
     self.currentCar.fuelAmount = [self.fuelField.text floatValue];
+    
+    [self. delegate editedCarUpdated];
     
     
     
